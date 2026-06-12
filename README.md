@@ -1,5 +1,13 @@
 # TianTing（天听）智能客服系统 — 项目介绍
+<div align="center">
 
+**基于 LangGraph 的 multi-agents 客服系统**
+<!-- 静态徽章 https://img.shields.io/badge/<左侧文字>-<右侧文字>-<颜色> -->
+[![License](https://img.shields.io/badge/License-GPLv3-D6336C.svg?logo=GPLv3&logoColor=BD0000)](https://www.gnu.org/licenses/gpl-3.0)
+[![GitHub](https://img.shields.io/badge/GitHub-TianTing-181717?logo=github&logoColor=181717)](https://github.com/sibuchen/TianTing)
+[![Author](https://img.shields.io/badge/Author-sibuchen-orange?logo=github&logoColor=181717)](https://github.com/sibuchen/)
+
+</div>
 ## 一、项目概述
 
 TianTing 是一个**企业级 AI 智能客服平台**，支持多渠道接入（Web 网页、飞书 IM），采用 Agent 编排架构实现意图识别与自动路由，结合 RAG 检索增强、知识图谱、MCP 工具调用和人工客服转接，为用户提供端到端的智能问答服务。
@@ -442,3 +450,9 @@ API Key 使用 AES-256-GCM 加密存储，JWT 双 Token 机制支持续期，请
 | Docker 服务数 | 7 |
 | API 端点模块 | 13 |
 | 数据库表 | ~15 |
+
+---
+
+## 📄 许可证
+
+本项目采用 [GNU General Public License v3.0](LICENSE) 开源协议。
