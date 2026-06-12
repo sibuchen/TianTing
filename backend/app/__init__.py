@@ -1,0 +1,6 @@
+"""
+TianTing Application Package
+智能客服系统后端应用
+"""
+
+__version__ = "1.0.0"

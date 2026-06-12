@@ -1,0 +1,55 @@
+# ============================================================================
+# TianTing Docker Compose — 开发模式覆盖
+
+# 启动: docker compose up -d
+# 无需指定文件，Docker 会自动寻找 override 文件进行覆盖
+
+# 这种模式下，Docker 会自动合并 docker-compose.yml 和 docker-compose.override.yml，覆盖生产配置为开发配置
+# 自动启用代码热更新（通过挂载本地目录）、调试模式和端口映射。
+# ============================================================================
+
+services:
+  postgres:
+    ports:
+      - "5432:5432"
+
+  redis:
+    ports:
+      - "6379:6379"
+
+  qdrant:
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+
+  neo4j:
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+
+  mongodb:
+    ports:
+      - "27017:27017"
+
+  backend:
+    ports:
+      - "2811:2811"
+    environment:
+      - ENVIRONMENT=development
+      - DEBUG=true
+    volumes:
+      - ./backend:/app:ro
+      - tianting_uploads:/tmp/tianting/uploads
+      - tianting_data:/home/tianting/.tianting
+    command: uvicorn app.main:app --host 0.0.0.0 --port 2811 --reload
+
+  frontend:
+    ports:
+      - "2424:3000"
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./frontend/src:/app/src:ro
+
+  gateway:
+    profiles: []

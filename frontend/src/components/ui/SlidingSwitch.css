@@ -1,0 +1,90 @@
+.sliding-switch {
+  /* Design Tokens mapping */
+  --switch-bg: var(--color-surface-bg-light, #f5f5f5);
+  --switch-padding: 4px;
+  --slider-bg: #ffffff;
+  --text-inactive: var(--color-on-surface-variant, #414755);
+  --text-active: var(--color-primary, #0057c2);
+  --slider-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+  
+  position: relative;
+  display: flex;
+  width: fit-content;
+  max-width: 100%;
+  background-color: var(--switch-bg);
+  border-radius: 12px;
+  padding: var(--switch-padding);
+  cursor: pointer;
+  isolation: isolate;
+  user-select: none;
+  border: 1px solid var(--color-outline-variant, #c1c6d7);
+  transition: all 0.3s ease;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.sliding-switch::-webkit-scrollbar {
+  display: none;
+}
+
+/* Dark Mode Variables */
+[data-theme='dark'] .sliding-switch {
+  --switch-bg: var(--color-surface-bg-dark, #141414);
+  --slider-bg: var(--color-primary, #0057c2);
+  --text-inactive: #888;
+  --text-active: #ffffff;
+  --slider-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* The Sliding Background */
+.sliding-switch::before {
+  content: "";
+  position: absolute;
+  background-color: var(--slider-bg);
+  border-radius: 8px;
+  z-index: 0;
+  box-shadow: var(--slider-shadow);
+  
+  /* Dynamic Position from JS */
+  top: var(--switch-padding);
+  bottom: var(--switch-padding);
+  width: var(--slider-width, 0);
+  left: var(--slider-left, 0);
+  
+  /* Cubic-bezier for that premium elastic feel */
+  transition: all 500ms cubic-bezier(0.47, 1.64, 0.41, 0.8);
+}
+
+.switch-option {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 20px;
+  z-index: 1;
+  transition: color 300ms ease, transform 200ms ease;
+  color: var(--text-inactive);
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+
+.switch-option:hover {
+  color: var(--text-active);
+}
+
+.switch-option.active {
+  color: var(--text-active);
+  font-weight: 600;
+}
+
+[data-theme='dark'] .switch-option.active {
+  color: #ffffff;
+}
+
+.switch-option:active {
+  transform: scale(0.96);
+}

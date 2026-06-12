@@ -1,0 +1,438 @@
+@import "tailwindcss";
+
+:root {
+  /* Light Mode Tokens (from DESIGN.md) */
+  color-scheme: light;
+  --surface: #faf9ff;
+  --surface-dim: #d8d9e5;
+  --surface-bright: #faf9ff;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #f2f3ff;
+  --surface-container: #ecedf7;
+  --surface-container-high: #e6e7f1;
+  --surface-container-highest: #e1e2eb;
+  --on-surface: #1a1b21;
+  --on-surface-variant: #44464f;
+  --outline: #727786;
+  --outline-variant: #c4c6d0;
+  --primary: #3f5aa9;
+  --on-primary: #ffffff;
+  --primary-container: #dbe1ff;
+  --on-primary-container: #00174b;
+  --secondary: #595d72;
+  --on-secondary: #ffffff;
+  --secondary-container: #dee1f9;
+  --on-secondary-container: #161b2c;
+  --tertiary: #75546f;
+  --on-tertiary: #ffffff;
+  --tertiary-container: #ffd7f3;
+  --on-tertiary-container: #2b122a;
+  --error: #ba1a1a;
+  --on-error: #ffffff;
+  --success: #006d39;
+  --info: #006495;
+
+  /* Tier 1 - Main Backgrounds */
+  --surface-bg: var(--surface-container-lowest);
+  /* Tier 2 - Containers/Cards */
+  --card-bg: var(--surface-container-lowest);
+
+  /* Shadows */
+  --shadow-soft-color: rgba(0, 0, 0, 0.06);
+  --shadow-modal-color: rgba(0, 0, 0, 0.1);
+  --shadow-soft: 0 4px 20px -2px var(--shadow-soft-color);
+  --shadow-modal: 0 20px 40px -4px var(--shadow-modal-color);
+
+  /* Legacy aliases to maintain compatibility */
+  --color-card-bg-light: #ffffff;
+  --color-card-bg-dark: #1f1f1f;
+  --color-surface-bg-light: #f5f5f5;
+  --color-surface-bg-dark: #141414;
+  --color-border-light: #e8e8e8;
+  --color-border-dark: #303030;
+}
+
+[data-theme="dark"] {
+  /* Dark Mode Tokens (from DESIGN.md) */
+  color-scheme: dark;
+  --surface: #0b1326;
+  --surface-dim: #0b1326;
+  --surface-bright: #31394d;
+  --surface-container-lowest: #060e20;
+  --surface-container-low: #131b2e;
+  --surface-container: #1b233a;
+  --surface-container-high: #252d47;
+  --surface-container-highest: #303855;
+  --on-surface: #e2e2ec;
+  --on-surface-variant: #c4c6d0;
+  --outline: #8b90a0;
+  --outline-variant: #414755;
+  --primary: #afc6ff;
+  --on-primary: #002d6c;
+  --primary-container: #234290;
+  --on-primary-container: #dbe1ff;
+  --secondary: #c1c5dd;
+  --on-secondary: #2b3042;
+  --secondary-container: #414659;
+  --on-secondary-container: #dee1f9;
+  --tertiary: #e4bbda;
+  --on-tertiary: #43273f;
+  --tertiary-container: #5b3d56;
+  --on-tertiary-container: #ffd7f3;
+  --error: #ffb4ab;
+  --on-error: #690005;
+  --success: #78da97;
+  --info: #8eceff;
+
+  /* Tier 1 - Main Backgrounds (Deeper) */
+  --surface-bg: var(--surface-container-lowest);
+  /* Tier 2 - Containers/Cards (Slightly lighter than bg) */
+  --card-bg: var(--surface-container-low);
+
+  /* Stronger shadows for dark mode */
+  --shadow-soft-color: rgba(0, 0, 0, 0.4);
+  --shadow-modal-color: rgba(0, 0, 0, 0.6);
+}
+
+@theme {
+  --font-family-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-family-mono: "Fira Code", monospace;
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 48px;
+
+  /* Semantic Colors mapping to tokens */
+  --color-surface: var(--surface);
+  --color-surface-dim: var(--surface-dim);
+  --color-surface-bg: var(--surface-bg);
+  --color-card-bg: var(--card-bg);
+  --color-on-surface: var(--on-surface);
+  --color-on-surface-variant: var(--on-surface-variant);
+  --color-outline: var(--outline);
+  --color-outline-variant: var(--outline-variant);
+  --color-primary: var(--primary);
+  --color-on-primary: var(--on-primary);
+  --color-primary-container: var(--primary-container);
+  --color-secondary: var(--secondary);
+  --color-secondary-container: var(--secondary-container);
+  --color-tertiary: var(--tertiary);
+  --color-error: var(--error);
+  --color-success: var(--success);
+  --color-info: var(--info);
+
+  /* Containers */
+  --color-surface-container-lowest: var(--surface-container-lowest);
+  --color-surface-container-low: var(--surface-container-low);
+  --color-surface-container: var(--surface-container);
+  --color-surface-container-high: var(--surface-container-high);
+  --color-surface-container-highest: var(--surface-container-highest);
+
+  /* Border Aliases */
+  --color-border: var(--outline-variant);
+
+  /* Shadows */
+  --shadow-soft: var(--shadow-soft);
+  --shadow-modal: var(--shadow-modal);
+}
+
+@layer base {
+  body {
+    background-color: var(--surface-bg) !important;
+    color: var(--on-surface);
+    font-family: var(--font-family-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--on-surface);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+  }
+
+  /* Material 3 Typography Classes */
+  .font-h1 { @apply text-[45px] leading-[52px] font-semibold; }
+  .font-h2 { @apply text-[36px] leading-[44px] font-semibold; }
+  .font-h3 { @apply text-[28px] leading-[36px] font-semibold; }
+  .font-body-lg { @apply text-[16px] leading-[24px] font-normal; }
+  .font-body-md { @apply text-[14px] leading-[20px] font-normal; }
+  .font-body-sm { @apply text-[12px] leading-[16px] font-normal; }
+  .font-label-lg { @apply text-[14px] leading-[20px] font-medium tracking-[0.1px]; }
+  .font-label-md { @apply text-[12px] leading-[16px] font-medium tracking-[0.5px]; }
+  .font-label-sm { @apply text-[11px] leading-[16px] font-medium tracking-[0.5px]; }
+
+  /* Custom Transitions */
+  .transition-all-custom {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Glassmorphism utility */
+  .glass {
+    @apply bg-white/10 backdrop-blur-md border border-white/20;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    background-color: var(--primary);
+    color: var(--on-primary);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 24px;
+    border-radius: 9999px;
+    box-shadow: var(--shadow-soft);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .btn-primary:hover {
+    background-color: var(--primary-container);
+    color: var(--on-primary-container);
+  }
+  
+  .btn-primary:active {
+    transform: scale(0.95);
+  }
+
+  .card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--outline-variant);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: var(--shadow-soft);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+
+  .input-field {
+    background-color: var(--surface-container-lowest);
+    border: 1px solid var(--outline-variant);
+    border-radius: 8px;
+    padding: 8px 16px;
+    color: var(--on-surface);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .input-field::placeholder {
+    color: var(--on-surface-variant);
+    opacity: 0.5;
+  }
+  
+  .input-field:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--shadow-soft-color);
+    border-color: var(--primary);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* --- Ant Design Force Overrides --- */
+  
+  /* Root Layouts */
+  .ant-layout, 
+  .ant-layout-sider, 
+  .ant-layout-header, 
+  .ant-layout-content {
+    transition: background 0.3s ease, border 0.3s ease !important;
+    background: var(--surface-bg) !important;
+  }
+
+  .ant-layout-header {
+    background: var(--surface-bg) !important;
+    box-shadow: none !important;
+  }
+
+  .ant-layout-sider {
+    background: var(--card-bg) !important;
+    border-right: 1px solid var(--outline-variant) !important;
+  }
+
+  .ant-layout-sider-children {
+    background: inherit !important;
+  }
+
+  /* Smooth transitions for theme toggle */
+  * {
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+
+  /* Autofill Reset to match theme */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover, 
+  input:-webkit-autofill:focus, 
+  input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px var(--surface-bg) inset !important;
+    -webkit-text-fill-color: var(--on-surface) !important;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
+  /* Inputs and Pickers */
+  .ant-input,
+  .ant-input-affix-wrapper,
+  .ant-picker {
+    background-color: var(--surface-bg) !important;
+    border-color: var(--outline-variant) !important;
+    color: var(--on-surface) !important;
+  }
+
+  .ant-input::placeholder,
+  .ant-picker-input > input::placeholder {
+    color: var(--on-surface-variant) !important;
+    opacity: 0.5 !important;
+  }
+
+  .ant-input-prefix {
+    color: var(--on-surface-variant) !important;
+  }
+
+  /* Tables */
+  .ant-table {
+    background: transparent !important;
+    color: var(--on-surface) !important;
+  }
+
+  .ant-table-thead > tr > th {
+    background: var(--surface-container-low) !important;
+    color: var(--on-surface-variant) !important;
+    border-bottom: 1px solid var(--outline-variant) !important;
+  }
+
+  .ant-table-tbody > tr > td {
+    background: transparent !important;
+    border-bottom: 1px solid var(--outline-variant) !important;
+    transition: background 0.3s !important;
+    color: var(--on-surface) !important;
+  }
+
+  .ant-table-tbody > tr.ant-table-row:hover > td {
+    background: var(--surface-container-lowest) !important;
+  }
+
+  /* Pagination */
+  .ant-pagination-item,
+  .ant-pagination-prev .ant-pagination-item-link,
+  .ant-pagination-next .ant-pagination-item-link {
+    background: var(--surface-bg) !important;
+    border-color: var(--outline-variant) !important;
+    color: var(--on-surface) !important;
+  }
+
+  .ant-pagination-item a {
+    color: var(--on-surface) !important;
+  }
+
+  .ant-pagination-item-active {
+    background: var(--primary) !important;
+    border-color: var(--primary) !important;
+  }
+
+  .ant-pagination-item-active a {
+    color: var(--on-primary) !important;
+  }
+
+  .ant-pagination-total-text {
+    color: var(--on-surface-variant) !important;
+  }
+
+  /* Dropdowns and Menus */
+  .ant-dropdown-menu,
+  .ant-select-dropdown {
+    background-color: var(--card-bg) !important;
+    border: 1px solid var(--outline-variant) !important;
+    box-shadow: var(--shadow-modal) !important;
+    padding: 4px !important;
+  }
+
+  .ant-dropdown-menu-item,
+  .ant-select-item {
+    color: var(--on-surface) !important;
+    border-radius: 8px !important;
+    margin: 2px 0 !important;
+  }
+
+  .ant-dropdown-menu-item:hover,
+  .ant-select-item-option-active {
+    background-color: var(--surface-container-high) !important;
+  }
+
+  /* Sidebar Menu Custom Styles */
+  .admin-sidebar-menu.ant-menu {
+    background: transparent !important;
+    border-inline-end: none !important;
+    color: var(--on-surface-variant) !important;
+    border: none !important;
+    padding-top: 0 !important;
+  }
+
+  .admin-sidebar-menu {
+    position: relative;
+    border-right: 0;
+  }
+
+  .admin-sidebar-menu .ant-menu-item {
+    margin-inline: 12px !important;
+    margin-block: 4px !important;
+    width: calc(100% - 24px) !important;
+    border-radius: 12px !important;
+    height: 48px !important;
+    line-height: 48px !important;
+    transition: all 0.2s ease !important;
+  }
+
+  .admin-sidebar-menu .ant-menu-item:not(.ant-menu-item-selected):hover,
+  .admin-sidebar-menu .ant-menu-item:not(.ant-menu-item-selected).ant-menu-item-active {
+    background-color: var(--surface-container-high) !important;
+    color: var(--on-surface) !important;
+  }
+
+  .admin-sidebar-menu .ant-menu-item-selected {
+    background-color: transparent !important;
+    color: var(--on-primary) !important;
+  }
+
+  .sidebar-sliding-bg {
+    position: absolute;
+    left: 12px;
+    width: calc(100% - 24px);
+    height: 48px;
+    background-color: var(--primary);
+    border-radius: 12px;
+    z-index: 0;
+    pointer-events: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 500ms cubic-bezier(0.47, 1.64, 0.41, 0.8);
+  }
+
+  .admin-sidebar-menu .ant-menu-item-selected .anticon,
+  .admin-sidebar-menu .ant-menu-item-selected a {
+    color: var(--on-primary) !important;
+  }
+
+  /* Breadcrumbs */
+  .ant-breadcrumb li:last-child {
+    color: var(--on-surface) !important;
+  }
+  .ant-breadcrumb li .ant-breadcrumb-link {
+    color: var(--on-surface-variant);
+  }
+
+  /* Buttons */
+  .ant-btn-text:hover {
+    background-color: var(--surface-container-high) !important;
+  }
+
+  /* --- End Ant Design Force Overrides --- */
+}

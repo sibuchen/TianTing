@@ -1,0 +1,76 @@
+# .understandignore — patterns for files/dirs to exclude from analysis
+# Syntax: same as .gitignore (globs, # comments, ! negation, trailing / for dirs)
+# Lines below are suggestions — uncomment to activate.
+# Use ! prefix to force-include something excluded by defaults.
+#
+# Built-in defaults (always excluded unless negated):
+#   node_modules/, .git/, dist/, build/, obj/, *.lock, *.min.js, etc.
+#
+# --- From .gitignore (uncomment to exclude) ---
+
+# *.py[cod]
+# *$py.class
+# *.so
+# .Python
+# develop-eggs/
+# downloads/
+# eggs/
+# .eggs/
+# /lib/
+# lib64/
+# parts/
+# sdist/
+# var/
+# wheels/
+# *.egg-info/
+# .installed.cfg
+# *.egg
+# env/
+# ENV/
+# .pytest_cache/
+# .coverage
+# htmlcov/
+# .mypy_cache/
+# .ruff_cache/
+# .pnp
+# .pnp.*
+# .yarn/*
+# !.yarn/patches
+# !.yarn/plugins
+# !.yarn/releases
+# !.yarn/versions
+# *.tsbuildinfo
+# next-env.d.ts
+# npm-debug.log*
+# yarn-debug.log*
+# yarn-error.log*
+# .pnpm-debug.log*
+# .env
+# .env.*
+# !.env.example
+# *.swp
+# *.swo
+# *.swn
+# .DS_Store
+# Thumbs.db
+# Desktop.ini
+# postgres_data/
+# redis_data/
+# uploads/
+# .trae/
+# .claude
+# .codegraph
+# .cursor
+# .tianting/
+# claudecode/
+# *.enc
+# *.bak
+# *.backup
+# *.sqlite
+# *.db
+
+# --- Test file patterns (uncomment to exclude) ---
+
+# *.test.*
+# *.spec.*
+# *.snap
